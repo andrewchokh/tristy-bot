@@ -1,5 +1,4 @@
 import { Client, ClientOptions, Collection } from "discord.js";
-import MongoDB from "./MongoDB";
 import Logger from "./Logger";
 import path from 'path';
 import fs from 'fs';
@@ -9,7 +8,6 @@ class DiscordBot extends Client {
     botConfig: any;
     commands: any;
     logger: any;
-    database: any;
 
     constructor(opts: ClientOptions) {
         super(opts);
@@ -17,12 +15,11 @@ class DiscordBot extends Client {
         this.botConfig = botConfig;
         this.commands = new Collection();
         this.logger = new Logger(path.join(__dirname, "..", "Logs.log"));
-        this.database = new MongoDB(this.botConfig.mongoUri || "");
 
         this.loadCommands();
         this.loadEvents();
 
-        
+        this.connectDB();
         this.registerCommandsInDB();
     }  
 
@@ -75,6 +72,10 @@ class DiscordBot extends Client {
 
     canUseCommand(command: any, member: any, channel: any) {
         return require('../utils/canUseCommand')(command, member, channel);
+    }
+
+    connectDB() {
+        require('../utils/connectDB')(this);
     }
 
     registerSlashCommands() {
