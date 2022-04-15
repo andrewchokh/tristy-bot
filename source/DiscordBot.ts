@@ -22,6 +22,7 @@ class DiscordBot extends Client {
         this.loadCommands();
         this.loadEvents();
 
+        
         this.registerCommandsInDB();
     }  
 
@@ -77,7 +78,7 @@ class DiscordBot extends Client {
     }
 
     registerSlashCommands() {
-        require('../utils/registerSlashCommands')(this, this.guilds.cache);
+        require('../utils/registerSlashCommands')(this);
     }
 
     registerCommandsInDB() {
