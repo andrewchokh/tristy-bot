@@ -1,6 +1,7 @@
+import { Channel, GuildMember } from 'discord.js';
 import guildModel from '../models/guild';
 
-export = async (command: any, member: any, channel: any) => {
+export = async (command: any, member: GuildMember, channel: Channel) => {
     const guildDB = await guildModel.findOne({id: String(member.guild.id)}).exec();
     const commandDB = await guildModel.findOne({name: command.name}).exec();
 
