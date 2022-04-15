@@ -15,4 +15,6 @@ export = async (client: any, guild: any) => {
     .then(() => {
         client.logger.log("Bot has joined to the server: " + guild.name);
     });
+
+    await client.registerCommandsInDB();
 }
