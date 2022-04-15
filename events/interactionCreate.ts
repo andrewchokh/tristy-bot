@@ -8,6 +8,7 @@ export = async (client: DiscordBot, interaction: CommandInteraction) => {
 
     const command = client.commands.get(commandName);
 
-    if (command.slash && command.slash.run)
-        command.slash.run(this, interaction, options);
+    if (!command.slash) return;
+
+    command.execute(client, interaction, options);
 }

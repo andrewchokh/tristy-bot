@@ -12,15 +12,15 @@ export = async (client: any) => {
 
             const command = require(commandsDir + "/" + file);
 
-            if (!command.slash || !command.slash.run) return;
+            if (!command.slash) return;
 
             const data = {
                 name: command.name,
                 description: command.description,
-                options: command.slash.options,
+                options: command.options,
             };
 
-            if (command.slash.test) {
+            if (command.slash.testing) {
                 await client.guilds.fetch(client.botConfig.testingServerId)
                     .then((guild: any) => {
                         if (guild) {

@@ -32,14 +32,7 @@ class DiscordBot extends Client {
             files.forEach((file) => {
                 if (file.startsWith('_')) return;
 
-                const command = require(commandsDir + "/" + file);
-
-                if (!command.name || !command.description || !command.run)
-                    return this.logger.error(
-                        "Unable to load File: " +
-                        file +
-                        ", Reason: File doesn't had run/name/desciption"
-                    );
+                const command = require(commandsDir + "/" + file);    
 
                 this.commands.set(command.name, command);
 

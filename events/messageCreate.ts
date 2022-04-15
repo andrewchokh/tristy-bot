@@ -19,6 +19,6 @@ export = async (client: DiscordBot, message: Message) => {
 
     if (command && 
         client.canUseCommand(command, message.member, message.channel)) {
-        command.run(client, message, args);
+        command.execute(client, message, args);
     }
 };
