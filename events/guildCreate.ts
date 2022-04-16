@@ -1,6 +1,8 @@
+import { Guild } from 'discord.js';
 import guildsModel from '../models/guild';
+import DiscordBot from '../source/DiscordBot';
 
-export = async (client: any, guild: any) => {
+export = async (client: DiscordBot, guild: Guild) => {
     await new guildsModel({
         id: guild.id,
         prefix: null,

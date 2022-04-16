@@ -19,7 +19,7 @@ export = async (client: DiscordBot) => {
                     requiredroles: [],
                     blacklistedroles: [],
                     redirectedoutput: '',
-                    modonly: true
+                    modonly: false
                 }).save();
 
                 client.logger.log('Command Added To Database: ' + command.name);

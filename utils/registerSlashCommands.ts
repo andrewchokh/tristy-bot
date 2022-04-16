@@ -1,7 +1,8 @@
 import path from 'path';
 import fs from 'fs'; 
+import DiscordBot from '../source/DiscordBot';
 
-export = async (client: any) => {
+export = async (client: DiscordBot) => {
     const commandsDir = path.join(__dirname, "..", "commands");
 
     fs.readdir(commandsDir, async (err, files) => {
@@ -17,7 +18,7 @@ export = async (client: any) => {
             const data = {
                 name: command.name,
                 description: command.description,
-                options: command.options,
+                options: command.slash.options,
             };
 
             if (command.slash.testing) {
@@ -36,7 +37,7 @@ export = async (client: any) => {
                 return;    
             } 
 
-            client.application.commands.create(data);
+            client.application?.commands.create(data);
 
             client.logger.log("Slash Command Loaded: " + command.name);
         });

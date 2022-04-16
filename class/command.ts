@@ -1,4 +1,4 @@
-import { CommandInteraction, Message } from "discord.js";
+import { CommandInteraction, Message, PermissionResolvable } from "discord.js";
 import DiscordBot from "../source/DiscordBot";
 
 class Command {
@@ -37,7 +37,7 @@ class Command {
     name: string;
     description: string;
     category: string;
-    permissions: string[];
+    permissions: PermissionResolvable;
     aliases: string[];
     exeFunc: Function;
     slash: { 
@@ -51,7 +51,7 @@ class Command {
         name: string, 
         description: string, 
         category: string,
-        permissions?: string[],
+        permissions?: PermissionResolvable,
         aliases?: string[],
         testing?: boolean,
         options?: object[],

@@ -4,7 +4,7 @@ import { Message } from "discord.js";
 import guildModel from "../models/guild";
 
 export = async (client: DiscordBot, message: Message) => {
-    if (message.author.bot || message.channel.type === "DM") return;
+    if (message.author.bot || message.channel.type === "DM" || !message.member) return;
 
     const guildDB = await guildModel.findOne({id: String(message.guildId)}).exec();
     const prefix = guildDB['prefix'] || client.botConfig.defaultPrefix;
@@ -17,8 +17,8 @@ export = async (client: DiscordBot, message: Message) => {
     const command = client.commands.get(commandName) || 
     client.commands.find((x: any) => x.aliases && x.aliases.includes(commandName));
 
-    if (command && 
-        client.canUseCommand(command, message.member, message.channel)) {
+    const check = await client.canUseCommand(command, message.member, message.channel); 
+
+    if (command && check) 
         command.execute(client, message, args);
-    }
 };

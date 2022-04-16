@@ -1,8 +1,9 @@
-import { Client, ClientOptions, Collection } from "discord.js";
+import { Channel, Client, ClientOptions, Collection, GuildMember } from "discord.js";
 import Logger from "./Logger";
 import path from 'path';
 import fs from 'fs';
 import botConfig from '../botconfig';
+import Command from "../class/command";
 
 class DiscordBot extends Client {
     botConfig: any;
@@ -63,7 +64,7 @@ class DiscordBot extends Client {
         }
     };
 
-    canUseCommand(command: any, member: any, channel: any) {
+    canUseCommand(command: Command, member: GuildMember, channel: Channel) {
         return require('../utils/canUseCommand')(command, member, channel);
     }
 
