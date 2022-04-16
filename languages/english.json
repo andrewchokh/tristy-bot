@@ -1,3 +1,8 @@
 {
-    "PING_MESSAGE": "Pong!"
+    "PING_MESSAGE": "Pong!",
+    "PURGE_SUCCESS_MESSAGE": "Deleted **%AMOUNT%** messages.",
+    "PURGE_FAIL_INVALID_AMOUNT": "Invalid argument for `amount`.",
+    "PURGE_FAIL_BIG_AMOUNT": "You can't delete more than 100 messages in one time.",
+    "AVATAR_FAIL_NO_MEMBER": "The member has not found.",
+    "AVATAR_FAIL_NO_AVATAR": "The member has no avatar."
 }
