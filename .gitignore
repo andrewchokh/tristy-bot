@@ -1,6 +1,9 @@
 # Logs
 *.log
 
+# Commands
+commands/_*.ts
+
 # Dependency directories
 node_modules/
 
