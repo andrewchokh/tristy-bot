@@ -1,3 +1,4 @@
+import { Role } from "discord.js";
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
