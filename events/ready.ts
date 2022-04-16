@@ -8,7 +8,10 @@ export = async (client: DiscordBot) => {
     //         type: client.botConfig.presence.type,
     //     },
     // });
-
+    
+    client.connectDB();
+    client.registerCommandsInDB();
     client.registerSlashCommands();
+
     client.logger.log("Successfully Logged in as " + client.user?.tag);
 };
