@@ -23,10 +23,10 @@ async function executeSlash(
 }
 
 const command = new Command({
-    name: 'ping', 
-    description: 'Replies with pong.', 
+    name: 'help', 
+    description: 'Shows a command list.', 
     category: 'Moderation',
-    aliases: ['pi'],
+    aliases: [],
     exeFunc: execute,
     slash: {
         testing: true,

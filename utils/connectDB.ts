@@ -7,7 +7,7 @@ export = async (client: DiscordBot) => {
         .then(() => {
             client.logger.log("Successfully connected to MongoDB");
         });  
-    } catch(e) {
-        client.logger.error("Unable to connect to MongoDB. Reason: " + e);
+    } catch(err) {
+        throw err;
     }    
 }

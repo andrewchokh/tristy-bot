@@ -1,12 +1,13 @@
 import DiscordBot from '../source/DiscordBot';
 import guildModel from '../models/guild';
 import commandModel from '../models/command';
+import Command from '../class/command';
 
 export = async (client: DiscordBot) => {
     const guildsDB = await guildModel.find().exec();
 
     guildsDB.forEach((guildDB) => {
-        client.commands.forEach(async (command: any) => {
+        client.commands.forEach(async (command: Command) => {
             if (!(await commandModel.exists({
                 name: command.name, guildId: guildDB['id']
             }))) {

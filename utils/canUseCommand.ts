@@ -1,9 +1,13 @@
-import { Channel, GuildMember, Role } from 'discord.js';
+import { Channel, GuildMember } from 'discord.js';
 import guildModel from '../models/guild';
 import commandModel from '../models/command'
 import Command from '../class/command';
 
-export = async (command: Command, member: GuildMember, channel: Channel) => {
+export = async (
+    command: Command, 
+    member: GuildMember, 
+    channel: Channel
+): Promise<boolean> => {
     const guildDB = await guildModel.findOne({id: String(member.guild.id)}).exec();
     const commandDB = await commandModel.findOne({name: command.name}).exec();
 

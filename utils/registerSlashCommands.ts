@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs'; 
 import DiscordBot from '../source/DiscordBot';
+import { Guild } from 'discord.js';
 
 export = async (client: DiscordBot) => {
     const commandsDir = path.join(__dirname, "..", "commands");
@@ -23,7 +24,7 @@ export = async (client: DiscordBot) => {
 
             if (command.slash.testing) {
                 await client.guilds.fetch(client.botConfig.testingServerId)
-                    .then((guild: any) => {
+                    .then((guild: Guild) => {
                         if (guild) {
                             guild.commands.create(data);
 

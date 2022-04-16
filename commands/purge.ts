@@ -9,16 +9,19 @@ async function execute(
 ) {
     const amount = parseInt(args[0]);
 
-    if (!amount) return message.channel.send("Please specify the amount of messages you want me to delete");
-    if (amount > 100 || amount < 1) return message.channel.send("Please select a number *between* 100 and 1");
+    if (!amount) return await message.channel.send(
+        await client.getLine(message.guild, "PURGE_FAIL_INVALID_AMOUNT")
+    );
+    if (amount > 100) return await message.channel.send(
+        await client.getLine(message.guild, "PURGE_FAIL_BIG_AMOUNT")
+        );
     if (message.channel.type === "DM") return;
     
-    message.channel.bulkDelete(amount+1)
-        .catch((err: any) => {
-            console.log(err);
-        });
+    message.channel.bulkDelete(amount+1);
 
-    const msg = await message.channel.send(`Deleted **${amount}** messages.`);
+    let text = await client.getLine(message.guild, "PURGE_SUCCESS_MESSAGE");
+
+    const msg = await message.channel.send(text.replace('%AMOUNT%', amount));
     setTimeout(() => {
         msg.delete();
     }, 3000)
@@ -31,12 +34,19 @@ async function executeSlash(
 ) {
     const amount = interaction.options.getInteger('amount'); 
 
-    if ((!amount) || (amount > 100 || amount < 1)) return;
+    if (!amount) return await interaction.reply(
+        await client.getLine(interaction.guild, "PURGE_FAIL_INVALID_AMOUNT")
+    );
+    if (amount > 100 || amount < 1) return await interaction.reply(
+        await client.getLine(interaction.guild, "PURGE_FAIL_BIG_AMOUNT")
+    )
     if (interaction.channel?.type === "DM") return;
 
-    interaction.channel?.bulkDelete(amount)  
+    interaction.channel?.bulkDelete(amount); 
 
-    await interaction.reply(`Deleted **${amount}** messages.`);   
+    let text = await client.getLine(interaction.guild, "PURGE_SUCCESS_MESSAGE");
+
+    await interaction.reply(text.replace('%AMOUNT%', amount));   
     setTimeout(() => {
         interaction.deleteReply();
     }, 3000)
@@ -50,7 +60,6 @@ const command = new Command({
     permissions: ['MANAGE_MESSAGES'],
     exeFunc: execute,
     slash: {
-        enable: true,
         testing: true,
         options: [
             {

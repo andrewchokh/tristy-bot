@@ -4,9 +4,9 @@ import colors from 'colors'
 class Logger {
     logger: winston.Logger;
 
-    constructor(LoggingFile: any) {
+    constructor(loggingFile: string) {
         this.logger = winston.createLogger({
-            transports: [new winston.transports.File({ filename: LoggingFile })],
+            transports: [new winston.transports.File({ filename: loggingFile })],
         });
     }
 
@@ -24,18 +24,18 @@ class Logger {
         console.log(colors.green(dateForm + colors.yellow(" | Info: " + info)));       
     }
 
-    error(err: string) {
-        let date = new Date();
+    // error(err: string) {
+    //     let date = new Date();
 
-        const dateForm = `${date.getHours()}:${date.getMinutes()} - ${date.getDate()}:${(date.getMonth()+1)}:${date.getFullYear()}`
+    //     const dateForm = `${date.getHours()}:${date.getMinutes()} - ${date.getDate()}:${(date.getMonth()+1)}:${date.getFullYear()}`
 
-        this.logger.error({
-            level: "error",
-            message: `${dateForm} | Error: ${err}`,
-        });
+    //     this.logger.error({
+    //         level: "error",
+    //         message: `${dateForm} | Error: ${err}`,
+    //     });
 
-        console.log(colors.green(dateForm + colors.red(" | Error: " + err))); 
-    }
+    //     console.log(colors.green(dateForm + colors.red(" | Error: " + err))); 
+    // }
 }
 
 export = Logger;

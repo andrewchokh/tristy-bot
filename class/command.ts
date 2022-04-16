@@ -2,38 +2,6 @@ import { CommandInteraction, Message, PermissionResolvable } from "discord.js";
 import DiscordBot from "../source/DiscordBot";
 
 class Command {
-    // name: string;
-    // description: string;
-    // category: string;
-    // permissions: string[];
-    // aliases: string[];
-    // test: boolean;
-    // options: object;
-    // exeFunc: Function;
-    // exeSlashFunc: Function;
-
-    // constructor(
-    //     name: string, 
-    //     description: string, 
-    //     category: string,
-    //     permissions: string[] = [],
-    //     aliases: string[] = [],
-    //     test: boolean = false,
-    //     options: object = {},
-    //     exeFunc: Function,
-    //     exeSlashFunc: Function
-    // ) {
-    //     this.name = name;
-    //     this.description = description;
-    //     this.category = category;
-    //     this.permissions = permissions;
-    //     this.aliases = aliases;
-    //     this.test = test;
-    //     this.options = options;
-    //     this.exeFunc = exeFunc;
-    //     this.exeSlashFunc = exeSlashFunc;
-    // }  
-    
     name: string;
     description: string;
     category: string;
@@ -41,7 +9,6 @@ class Command {
     aliases: string[];
     exeFunc: Function;
     slash: { 
-        enable: boolean; 
         testing: boolean; 
         options: object[]; 
         exeFunc: Function; 
@@ -57,9 +24,8 @@ class Command {
         options?: object[],
         exeFunc: Function,
         slash?: {
-            enable: boolean,
-            testing: boolean,
-            options: object[],
+            testing?: boolean,
+            options?: object[],
             exeFunc: Function
         }
     }) {
@@ -70,7 +36,6 @@ class Command {
         this.aliases = options.aliases || [];
         this.exeFunc = options.exeFunc;
         this.slash = {
-            enable: options.slash?.testing || false,
             testing: options.slash?.testing || false,
             options: options.slash?.options || [],
             exeFunc: options.slash?.exeFunc || Function  
