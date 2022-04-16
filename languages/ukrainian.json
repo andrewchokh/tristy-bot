@@ -1,8 +1,0 @@
-{
-    "PING_MESSAGE": "Понг!",
-    "PURGE_SUCCESS_MESSAGE": "Видалено **%AMOUNT%** повідомлень.",
-    "PURGE_FAIL_INVALID_AMOUNT": "Неправильний аргумент для `amount`.",
-    "PURGE_FAIL_BIG_AMOUNT": "Ви не можете видалити більше 100 повідомлень за одну спробу.",
-    "AVATAR_FAIL_NO_MEMBER": "Учасника не знайдено.",
-    "AVATAR_FAIL_NO_AVATAR": "Учасник не має аватара."
-}
