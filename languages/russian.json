@@ -1,8 +1,0 @@
-{
-    "PING_MESSAGE": "Понг!",
-    "PURGE_SUCCESS_MESSAGE": "Удалено **%AMOUNT%** сообщений.",
-    "PURGE_FAIL_INVALID_AMOUNT": "Неверный аргумент для `amount`.",
-    "PURGE_FAIL_BIG_AMOUNT": "Вы не можете удалить больше 100 сообщений за один раз.",
-    "AVATAR_FAIL_NO_MEMBER": "Участник не найден.",
-    "AVATAR_FAIL_NO_AVATAR": "Участник не имеет аватара."
-}
