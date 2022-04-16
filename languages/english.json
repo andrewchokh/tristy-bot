@@ -1,8 +1,16 @@
 {
-    "PING_MESSAGE": "Pong!",
-    "PURGE_SUCCESS_MESSAGE": "Deleted **%AMOUNT%** messages.",
-    "PURGE_FAIL_INVALID_AMOUNT": "Invalid argument for `amount`.",
-    "PURGE_FAIL_BIG_AMOUNT": "You can't delete more than 100 messages in one time.",
-    "AVATAR_FAIL_NO_MEMBER": "The member has not found.",
-    "AVATAR_FAIL_NO_AVATAR": "The member has no avatar."
+    "REASON": "Reason",
+    "NOTSPECIFIED": "Not specified",
+
+    "AVATAR_FAIL_NOMEMBER": "The member has not found.",
+    "AVATAR_FAIL_NOAVATAR": "The member has no avatar.",
+    "MUTE_SUCCESS": "Member %MEMBER% was muted.",
+    "MUTE_FAIL_NOMEMBER": "Member has not found.",
+    "MUTE_FAIL_NOMUTEDROLE": "The server has no \"Muted\" role.",
+    "MUTEDROLE_SUCCESS": "The mute role has been updated to %ROLE%.",
+    "MUTEDROLE_CLEAR_SUCCESS": "The mute role has been cleared.",
+    "MUTEDROLE_FAIL_NOROLE": "Role has not found.",
+    "PURGE_SUCCESS": "Deleted **%AMOUNT%** messages.",
+    "PURGE_FAIL_INVALIDAMOUNT": "Invalid argument for `amount`.",
+    "PURGE_FAIL_BIGAMOUNT": "You can't delete more than 100 messages in one time."
 }
