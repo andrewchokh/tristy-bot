@@ -10,16 +10,16 @@ async function execute(
     const amount = parseInt(args[0]);
 
     if (!amount) return await message.channel.send(
-        await client.getLine(message.guild, "PURGE_FAIL_INVALID_AMOUNT")
+        await client.getLine(message.guild, "PURGE_FAIL_INVALIDAMOUNT")
     );
     if (amount > 100) return await message.channel.send(
-        await client.getLine(message.guild, "PURGE_FAIL_BIG_AMOUNT")
+        await client.getLine(message.guild, "PURGE_FAIL_BIGAMOUNT")
         );
     if (message.channel.type === "DM") return;
     
     message.channel.bulkDelete(amount+1);
 
-    let text = await client.getLine(message.guild, "PURGE_SUCCESS_MESSAGE");
+    let text = await client.getLine(message.guild, "PURGE_SUCCESS");
 
     const msg = await message.channel.send(text.replace('%AMOUNT%', amount));
     setTimeout(() => {
@@ -35,16 +35,16 @@ async function executeSlash(
     const amount = interaction.options.getInteger('amount'); 
 
     if (!amount) return await interaction.reply(
-        await client.getLine(interaction.guild, "PURGE_FAIL_INVALID_AMOUNT")
+        await client.getLine(interaction.guild, "PURGE_FAIL_INVALIDAMOUNT")
     );
     if (amount > 100 || amount < 1) return await interaction.reply(
-        await client.getLine(interaction.guild, "PURGE_FAIL_BIG_AMOUNT")
+        await client.getLine(interaction.guild, "PURGE_FAIL_BIGAMOUNT")
     )
     if (interaction.channel?.type === "DM") return;
 
     interaction.channel?.bulkDelete(amount); 
 
-    let text = await client.getLine(interaction.guild, "PURGE_SUCCESS_MESSAGE");
+    let text = await client.getLine(interaction.guild, "PURGE_SUCCESS");
 
     await interaction.reply(text.replace('%AMOUNT%', amount));   
     setTimeout(() => {

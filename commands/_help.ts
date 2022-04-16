@@ -25,7 +25,7 @@ async function executeSlash(
 const command = new Command({
     name: 'help', 
     description: 'Shows a command list.', 
-    category: 'Moderation',
+    category: 'Utility',
     aliases: [],
     exeFunc: execute,
     slash: {

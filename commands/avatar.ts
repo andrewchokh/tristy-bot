@@ -11,7 +11,7 @@ async function execute(
     let mentions = message.mentions.users
 
     if (!mentions) return await message.channel.send(
-        client.getLine(message.guild, 'AVATAR_FAIL_NO_MEMBER')
+        client.getLine(message.guild, 'AVATAR_FAIL_NOMEMBER')
     );    
 
     message.guild?.members.fetch().then(members => {
@@ -20,7 +20,7 @@ async function execute(
                 const avatarUrl = member.user.avatarURL()
 
                 if (!avatarUrl) return await message.channel.send(
-                    client.getLine(message.guild, 'AVATAR_FAIL_NO_AVATAR')
+                    client.getLine(message.guild, 'AVATAR_FAIL_NOAVATAR')
                 ); 
 
                 const embed = new MessageEmbed()
