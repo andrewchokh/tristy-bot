@@ -1,4 +1,4 @@
-import { Channel, Client, ClientOptions, Collection, GuildMember } from "discord.js";
+import { Channel, Client, ClientOptions, Collection, Guild, GuildMember } from "discord.js";
 import Logger from "./Logger";
 import path from 'path';
 import fs from 'fs';
@@ -9,26 +9,45 @@ class DiscordBot extends Client {
     botConfig: any;
     commands: any;
     logger: any;
+    languages: any;
 
     constructor(opts: ClientOptions) {
         super(opts);
 
         this.botConfig = botConfig;
+        this.languages = new Collection();
         this.commands = new Collection();
         this.logger = new Logger(path.join(__dirname, "..", "Logs.log"));
 
+        this.loadLanguages();
         this.loadCommands();
         this.loadEvents();
-
-        this.connectDB();
-        this.registerCommandsInDB();
     }  
+
+    loadLanguages() {
+        const commandsDir = path.join(__dirname, "..", "languages");
+
+        fs.readdir(commandsDir, (err, files) => {
+            if (err) throw err;
+
+            files.forEach((file) => {
+                if (file.startsWith('_')) return;
+
+                const language = require(commandsDir + "/" + file);    
+                const name = file.split('.')[0].toLowerCase();
+
+                this.languages.set(name, language);
+
+                this.logger.log("Language Loaded: " + name);
+            });
+        })
+    }
 
     loadCommands() {
         const commandsDir = path.join(__dirname, "..", "commands");
 
         fs.readdir(commandsDir, (err, files) => {
-            if (err) return this.logger.error(err);
+            if (err) throw err;
 
             files.forEach((file) => {
                 if (file.startsWith('_')) return;
@@ -70,6 +89,10 @@ class DiscordBot extends Client {
 
     connectDB() {
         require('../utils/connectDB')(this);
+    }
+
+    getLine(guild: Guild | null, line: string) {
+        return require('../utils/getLine')(this, guild, line);
     }
 
     registerSlashCommands() {
